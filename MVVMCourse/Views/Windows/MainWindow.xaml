@@ -49,6 +49,12 @@
                          Width="Auto" Height="Auto"
                          Fill="Red" Stroke="Blue" StrokeThickness="5"
                          Grid.Column="1" Grid.Row="0"/>
+                        <TextBox Grid.Column="0" Grid.Row="1"
+                                   Width="Auto" Height="Auto"
+                                   Margin="5, 5, 5, 5"/>
+                        <Button Grid.Column="1" Grid.Row="1"
+                                Width="100" Height="20"
+                                Content="Click me"/>
                         <GridSplitter Grid.Column="0" Grid.RowSpan="2"
                               HorizontalAlignment="Right"
                               Width="10"/>
