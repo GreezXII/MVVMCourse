@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:MVVMCourse.ViewModels"
+        xmlns:cmd="clr-namespace:MVVMCourse.Infrastructure.Commands"
         xmlns:local="clr-namespace:MVVMCourse"
         mc:Ignorable="d"
         Title="{Binding  Title}" 
@@ -18,7 +19,11 @@
                     <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Помощь">
-                    <MenuItem Header="О программе" Command="{Binding ShowHelp}"/>
+                    <MenuItem Header="О программе">
+                        <MenuItem.Command>
+                            <cmd:AboutCommand/>
+                        </MenuItem.Command>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom">
