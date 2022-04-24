@@ -1,4 +1,7 @@
 ﻿using MVVMCourse.ViewModels.Base;
+using MVVMCourse.Infrastructure.Commands;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MVVMCourse.ViewModels
 {
@@ -23,5 +26,19 @@ namespace MVVMCourse.ViewModels
             set => Set(ref _Status, value);
         }
         #endregion
+
+        #region Commands
+        #region CloseApplicationCommand
+        public ICommand CloseApplicationCommand { get; }
+
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+        private void OnCloseApplicationCommandExecuted(object p) => App.Current.Shutdown();
+        #endregion
+        #endregion
+
+        public MainWindowViewModel()
+        {
+            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+        }
     }
 }
