@@ -12,18 +12,21 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="Q" Modifiers="Ctrl" Command="{Binding CloseApplicationCommand}"/>
+    </Window.InputBindings>
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+        <cmd:AboutCommand x:Key="AboutCommand"/>
+    </Window.Resources>
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Файл">
-                    <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"/>
+                    <MenuItem Header="Выход" Command="{StaticResource CloseApplicationCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Помощь">
-                    <MenuItem Header="О программе">
-                        <MenuItem.Command>
-                            <cmd:AboutCommand/>
-                        </MenuItem.Command>
-                    </MenuItem>
+                    <MenuItem Header="О программе" Command="{StaticResource AboutCommand}"/>
                 </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom">
@@ -46,17 +49,21 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Rectangle Margin="10, 10, 10, 10" 
-                           Width="Auto" Height="Auto" 
-                           Fill="Blue" Stroke="Red" StrokeThickness="5" 
-                           RadiusX="7" RadiusY="5"
-                           Grid.Column="0" Grid.Row="0"/>
+                                   Width="Auto" Height="Auto" 
+                                   Fill="Blue" Stroke="Red" StrokeThickness="5" 
+                                   RadiusX="7" RadiusY="5"
+                                   Grid.Column="0" Grid.Row="0"/>
                         <Ellipse Margin="10, 10, 10, 10"
-                         Width="Auto" Height="Auto"
-                         Fill="Red" Stroke="Blue" StrokeThickness="5"
-                         Grid.Column="1" Grid.Row="0"/>
+                                 Width="Auto" Height="Auto"
+                                 Fill="Red" Stroke="Blue" StrokeThickness="5"
+                                 Grid.Column="1" Grid.Row="0">
+                            <Ellipse.InputBindings>
+                                <MouseBinding Command="{StaticResource CloseApplicationCommand}" MouseAction="LeftDoubleClick"></MouseBinding>
+                            </Ellipse.InputBindings>
+                        </Ellipse>
                         <TextBox Grid.Column="0" Grid.Row="1"
-                                   Width="Auto" Height="Auto"
-                                   Margin="5, 5, 5, 5"/>
+                                 Width="Auto" Height="Auto"
+                                 Margin="5, 5, 5, 5"/>
                         <Button Grid.Column="1" Grid.Row="1"
                                 Width="100" Height="20"
                                 Content="Click me"/>
